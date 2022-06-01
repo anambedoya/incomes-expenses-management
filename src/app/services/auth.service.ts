@@ -9,6 +9,7 @@ import { AppState } from '../app.reducer';
 import { map } from 'rxjs/operators';
 import { Usuario } from '../models/usuario.model';
 import { Subscription } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +22,7 @@ export class AuthService {
               private store: Store<AppState>) { }
 
   initAuthListener() {
+    // No hay que destruir la suscripción porque este método solo se llama una vez
     this.auth.authState.subscribe(fuser => {
       // console.log(fuser?.uid);
 
@@ -28,13 +30,15 @@ export class AuthService {
         // existe
         this.userSubscription = this.fireStore.doc(`${fuser.uid}/usuario`).valueChanges()
           .subscribe((firestoreUser: any) => {
-            console.log(firestoreUser);
+            // console.log({firestoreUser});
             const user = Usuario.fromFirebase(firestoreUser);
             this.store.dispatch( authActions.setUser({ user }) );
           })
       } else {
         // No existe
-        // this.userSubscription.unsubscribe();
+        if(this.userSubscription) {
+          this.userSubscription.unsubscribe();
+        }
         this.store.dispatch( authActions.unSetUser() );
       }
     })
