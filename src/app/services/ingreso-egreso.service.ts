@@ -15,7 +15,9 @@ export class IngresoEgresoService {
   crearIngresoEgreso(ingresoEgreso: IngresoEgreso) {
     return this.firestore.doc(`${this.authService.user.uid}/ingresos-egresos`)
         .collection('items')
-        .add({...ingresoEgreso});
+        .add({...ingresoEgreso})
+        .then( (ref) => console.log('exito' ,ref))
+        .catch( err => console.warn(err));
   }
 
   initIngresosEgresosListener(uid: string) {
@@ -29,5 +31,10 @@ export class IngresoEgresoService {
             )
           )
         );
+  }
+
+  borrarIngresoEgreso(uidItem: string) {
+    const uid = this.authService.user.uid;
+    return this.firestore.doc(`${uid}/ingresos-egresos/items/${uidItem}`).delete();
   }
 }
