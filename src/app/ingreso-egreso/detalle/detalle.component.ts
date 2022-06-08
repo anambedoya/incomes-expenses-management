@@ -26,8 +26,8 @@ export class DetalleComponent implements OnInit, OnDestroy {
     this.ingresosSubs.unsubscribe();
   }
 
-  borrar(uid: string | undefined) {
-    this.ingresoEgresoService.borrarIngresoEgreso( uid ? uid : '' )
+  borrar(uid: string ) {
+    this.ingresoEgresoService.borrarIngresoEgreso( uid )
         .then( () => Swal.fire('Borrado', 'Item borrado', 'success') )
         .catch(err => Swal.fire('error', err.message, 'error'));
   }

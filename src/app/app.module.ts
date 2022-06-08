@@ -13,6 +13,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 // Modulos
 import { AppRoutingModule } from './app-routing.module';
+import { NgChartsModule } from 'ng2-charts';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -54,7 +55,8 @@ import { OrdenIngresoPipe } from './pipes/orden-ingreso.pipe';
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
-    })
+    }),
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
