@@ -17,8 +17,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AuthModule } from './auth/auth.module';
-import { SharedModule } from './shared/shared.module';
-import { IngresoEgresoModule } from './ingreso-egreso/ingreso-egreso.module';
 
 import { AppComponent } from './app.component';
 
@@ -30,7 +28,6 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AuthModule,
-    IngresoEgresoModule,
 
     AppRoutingModule,
 

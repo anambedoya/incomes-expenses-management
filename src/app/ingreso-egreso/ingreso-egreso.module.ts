@@ -7,11 +7,15 @@ import { NgChartsModule } from 'ng2-charts';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardRoutesModule } from '../dashboard/dashboard-routes.module';
 
+
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { IngresoEgresoComponent } from './ingreso-egreso.component';
 import { DetalleComponent } from './detalle/detalle.component';
 import { EstadisticaComponent } from './estadistica/estadistica.component';
 import { OrdenIngresoPipe } from '../pipes/orden-ingreso.pipe';
+
+import { StoreModule } from '@ngrx/store';
+import { ingresoEgresoReducer } from './ingreso-egreso.reducer';
 
 
 
@@ -25,6 +29,7 @@ import { OrdenIngresoPipe } from '../pipes/orden-ingreso.pipe';
   ],
   imports: [
     CommonModule,
+    StoreModule.forFeature('ingresosEgreso', ingresoEgresoReducer),
     ReactiveFormsModule,
     NgChartsModule,
     SharedModule,
